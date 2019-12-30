@@ -43,6 +43,20 @@ def house2(permute=False):
     if permute:
         X = _permute(X)
     return X
+#
+
+def noisy_lemniscate(n=50, eps=0.2, seed=271828, permute=False):
+    import numpy as np
+    np.random.seed(seed)
+
+    th = np.linspace(0,2*np.pi,n)
+    X = np.array([2*np.cos(th),np.sin(2*th)]).T
+    X += eps*np.random.randn(n,2)
+
+    if permute:
+        X = _permute(X)
+    return X
+#
 
 def _permute(pts):
     import numpy as np
