@@ -52,7 +52,7 @@ def vis_cloud(X, thresh=0., draw_edges=True, draw_loops=True, axh=None):
             polys.append(tripatch)
         #
 
-    ax.axis('square')
+    # ax.axis('square')
 
     return ax
 #

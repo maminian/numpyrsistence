@@ -37,20 +37,23 @@ class Point_cloud:
         if self.d != 2:
             raise Exception('Visualization only supported in 2D.')
         from matplotlib import pyplot
+        
         if 'axh' in kwargs:
             ax = kwargs['axh']
             fig = ax.get_figure()
             kwargs.pop('axh')
         else:
-            fig,ax = pyplot.subplots(1,1, figsize=(8,8))
+            fig,ax = pyplot.subplots(1,1)
         #
-        
+
         self.fig = fig
         self.ax = ax
 
         ax.scatter(self.pts[:,0], self.pts[:,1], *args, **kwargs)
-        ax.axis('square')
+
         fig.tight_layout()
+        ax.axis('equal')
+
 
         fig.show()
         return
