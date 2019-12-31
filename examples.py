@@ -45,6 +45,37 @@ def house2(permute=False):
     return X
 #
 
+def thing1(permute=False):
+    import numpy as np
+    X = np.array([
+        [0,0,-np.sqrt(2./3)],
+        [-0.5, -1./np.sqrt(12), 0],
+        [0.5, -1./np.sqrt(12), 0],
+        [0, 1./np.sqrt(3), 0],
+        [0,0,+np.sqrt(2./3)]
+    ])
+
+    if permute:
+        X = _permute(X)
+    return X
+#
+
+def thing2(n=6, permute=False):
+    import numpy as np
+    X = [np.array([np.cos(th), np.sin(th),0]) for th in np.linspace(0,2*np.pi,n-1)[:-1]]
+    plane_center = np.mean(X, axis=0)
+    X = [xi - plane_center for xi in X]
+    scaling = np.linalg.norm(X[1] - X[0])
+    X /= scaling
+
+    moo = np.sqrt(np.abs(1. - np.linalg.norm(X[0])**2))
+    X = [[0,0,-moo]] + list(X) + [[0,0,+moo]]
+    X = np.array(X)
+
+    if permute:
+        X = _permute(X)
+    return X
+
 def noisy_lemniscate(n=50, eps=0.2, seed=271828, permute=False):
     import numpy as np
     np.random.seed(seed)
