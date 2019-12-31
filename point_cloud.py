@@ -34,10 +34,16 @@ class Point_cloud:
     #
 
     def visualize(self,*args,**kwargs):
-        if self.d != 2:
-            raise Exception('Visualization only supported in 2D.')
+        if self.d == 3:
+            # switch to visualize3d
+            self.visualize3d(*args,**kwargs)
+            return
+        elif self.d == 2:
+            pass
+        else:
+            raise Exception('Visualization only supported in 2d and 3d.')
         from matplotlib import pyplot
-        
+
         if 'axh' in kwargs:
             ax = kwargs['axh']
             fig = ax.get_figure()
@@ -54,6 +60,30 @@ class Point_cloud:
         fig.tight_layout()
         ax.axis('equal')
 
+        fig.show()
+        return
+    #
+
+    def visualize3d(self,*args,**kwargs):
+        from matplotlib import pyplot
+        from mpl_toolkits import mplot3d
+
+        if 'axh' in kwargs:
+            ax = kwargs['axh']
+            fig = ax.get_figure()
+            kwargs.pop('axh')
+        else:
+            fig = pyplot.figure()
+            ax = fig.add_subplot(111, projection='3d')
+        #
+
+        self.fig = fig
+        self.ax = ax
+
+        ax.scatter(self.pts[:,0], self.pts[:,1], self.pts[:,2], *args, **kwargs)
+
+        fig.tight_layout()
+        # ax.axis('square')
 
         fig.show()
         return

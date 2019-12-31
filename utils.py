@@ -1,5 +1,5 @@
 
-def vis_cloud(X, thresh=0., draw_edges=True, draw_loops=True, axh=None):
+def vis_cloud(X, thresh=0., draw_balls=True, draw_edges=True, draw_loops=True, axh=None):
     import point_cloud
     import distmat2
     from matplotlib import patches
@@ -22,7 +22,8 @@ def vis_cloud(X, thresh=0., draw_edges=True, draw_loops=True, axh=None):
         ax = pc.ax
     #
 
-    pc.draw_ball(np.unique(pairs), thresh/2., c=[0.5,0,0.5])
+    if draw_balls:
+        pc.draw_ball(np.unique(pairs), thresh/2., c=[0.5,0,0.5])
 
     ######################
     # edges
@@ -31,7 +32,10 @@ def vis_cloud(X, thresh=0., draw_edges=True, draw_loops=True, axh=None):
             iijj = D2.coords[o]
             xxyy = X[iijj]
             #middle = np.mean(xxyy, axis=0)
-            ax.plot(xxyy[:,0], xxyy[:,1], c=pyplot.cm.tab10(j%10), lw=2)
+            if pc.d==2:
+                ax.plot(xxyy[:,0], xxyy[:,1], c=pyplot.cm.tab10(j%10), lw=2)
+            else:
+                ax.plot(xxyy[:,0], xxyy[:,1], xxyy[:,2], c=pyplot.cm.tab10(j%10), lw=2)
         #
 
     ######################
