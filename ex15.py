@@ -22,7 +22,7 @@ pc = point_cloud.Point_cloud(X)
 D2 = distmat2.Distmat2(X)
 
 # some experimenting shows this is okay for n=100.
-thresh = np.median(D2.distances)/2.
+thresh = np.median(D2.distances)/2.5
 
 ax = utils.vis_cloud(X, thresh=thresh, draw_balls=False, draw_loops=False,)
 
@@ -64,4 +64,7 @@ for e in edge_idx:
     vidx = np.where(p1[:,e])[0] # vertex pair for the edge.
     ax.plot(X[vidx,0], X[vidx,1], X[vidx,2], c='k', lw=10, alpha=0.7)
 
+fig = pyplot.gcf()
+fig.set_figwidth(8)
+fig.set_figheight(8)
 pyplot.ion()
