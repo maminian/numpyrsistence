@@ -122,7 +122,6 @@ def get_boundary_operators(pairs):
     pairs: list of lists or similar of edges. These are expected
         to be in ascending order; so [[2,3],[0,4],[1,2]] is valid.
     '''
-    import utils
     import numpy as np
 
     loops = get_K3s(pairs)
