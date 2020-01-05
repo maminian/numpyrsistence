@@ -12,6 +12,26 @@ def noisy_circle(n=50, eps=0.3, seed=123234, permute=False):
     return X
 #
 
+def noisy_sphere(n=50, eps=0.05, seed=2468024, permute=False):
+    # uniform sampling on sphere having a uniform expected
+    # euclidean distance from a point to its nearest neighbors
+    #
+    # Seems this can be done scaling normal random vars by magnitude;
+    # see http://corysimon.github.io/articles/uniformdistn-on-sphere/
+    # The eps here represents noise in the magnitude.
+    import numpy as np
+    np.random.seed(seed)
+
+    X = np.random.randn(n,3)
+    rho = np.linalg.norm(X, axis=1)
+
+    X = (X.T/rho*(1 + eps*np.random.randn(len(rho)))).T
+
+    if permute:
+        X = _permute(X)
+    return X
+#
+
 def house(permute=False):
     import numpy as np
     X = np.array([
