@@ -32,6 +32,29 @@ def noisy_sphere(n=50, eps=0.05, seed=2468024, permute=False):
     return X
 #
 
+def noisy_torus(nu=20,nv=20, eps=0.05, seed=14285714, permute=False):
+    '''
+    naive generation of torus followed by subsampling to desired value of n.
+    '''
+    import numpy as np
+    t1 = np.linspace(0,2*np.pi, nu+1)[::-1]
+    t2 = np.linspace(0,2*np.pi, nv+1)[::-1]
+    x = np.concatenate([ (2+np.cos(t))*np.cos(t1) for t in t2 ])
+    y = np.concatenate([ (2+np.cos(t))*np.sin(t1) for t in t2 ])
+    z = np.concatenate([ np.sin(t)*np.ones(t1.shape) for t in t2 ])
+    X = np.vstack([x,y,z]).T
+
+    # subsampling in an unbiased way requires a permutation.
+    if permute:
+        X = _permute(X)
+
+    X *= (1 + eps*np.random.randn(*X.shape))
+
+    return X
+#
+
+#
+
 def house(permute=False):
     import numpy as np
     X = np.array([

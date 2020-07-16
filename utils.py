@@ -33,9 +33,11 @@ def vis_cloud(X, thresh=0., draw_balls=True, draw_edges=True, draw_loops=True, a
             xxyy = X[iijj]
             #middle = np.mean(xxyy, axis=0)
             if pc.d==2:
-                ax.plot(xxyy[:,0], xxyy[:,1], c=pyplot.cm.tab10(j%10), lw=2)
+#                ax.plot(xxyy[:,0], xxyy[:,1], c=pyplot.cm.tab10(j%10), lw=2)
+                ax.plot(xxyy[:,0], xxyy[:,1], c='k', lw=1)
             else:
-                ax.plot(xxyy[:,0], xxyy[:,1], xxyy[:,2], c=pyplot.cm.tab10(j%10), lw=2)
+#                ax.plot(xxyy[:,0], xxyy[:,1], xxyy[:,2], c=pyplot.cm.tab10(j%10), lw=2)
+                ax.plot(xxyy[:,0], xxyy[:,1], xxyy[:,2], c='k', lw=1)
         #
 
     ######################

@@ -57,8 +57,8 @@ class Point_cloud:
 
         ax.scatter(self.pts[:,0], self.pts[:,1], *args, **kwargs)
 
-        fig.tight_layout()
-        ax.axis('equal')
+        # fig.tight_layout()
+#        ax.axis('equal')
 
         fig.show()
         return
@@ -82,7 +82,7 @@ class Point_cloud:
 
         ax.scatter(self.pts[:,0], self.pts[:,1], self.pts[:,2], *args, **kwargs)
 
-        fig.tight_layout()
+        # fig.tight_layout()
         # ax.axis('square')
 
         fig.show()

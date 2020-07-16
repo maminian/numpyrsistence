@@ -21,8 +21,9 @@ p1,p2 = utils.get_boundary_operators(pairs)
 
 nullspace = intmatop.null(p1)
 
-fig2,ax2 = pyplot.subplots(2,3, figsize=(12,8), sharex=True, sharey=True)
-fig2.tight_layout()
+#fig2,ax2 = pyplot.subplots(2,3, figsize=(12,8), sharex=True, sharey=True)
+fig2,ax2 = pyplot.subplots(2,3, figsize=(12,8), sharex=True)
+#fig2.tight_layout()
 
 #fig2,ax2 = utils.vis_cloud(X, thresh=0.74, draw_edges=False, draw_loops=False)
 
@@ -58,6 +59,7 @@ for idx,o in enumerate(order[:6]):
             xxyy = X[pairs[j]]
             ax2[axi,axj].plot(xxyy[:,0], xxyy[:,1], c=colors[idx], lw=5)
     #
+    ax2[axi,axj].axis('square')
 
     # plot vertex indexes
     vertices = np.unique(pairs[np.where(column!=0)])
@@ -66,5 +68,7 @@ for idx,o in enumerate(order[:6]):
         ax2[axi,axj].text(xy[0],xy[1], '%i'%v, c='w', ha='center', va='center', bbox={'facecolor':'r', 'alpha':0.8})
 #
 
+#ax2[0,0].axis('equal')
 fig2.tight_layout()
-fig2.savefig('partial_1_nullspace.png', dpi=120, bbox_inches='tight')
+#fig2.savefig('partial_1_nullspace.png', dpi=120, bbox_inches='tight')
+#fig2.savefig('partial_1_nullspace.png', dpi=120)
